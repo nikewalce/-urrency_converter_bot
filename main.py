@@ -7,6 +7,8 @@ from telegram.ext import (
     filters,
     ContextTypes
 )
+import os
+
 
 RATES = {
     "USD_RUB": 80.33,  # 1 USD = 90.50 RUB
@@ -86,7 +88,9 @@ async def convert(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
-    application = Application.builder().token("").build()
+    TOKEN = os.getenv("TOKEN")  # Читаем токен из переменной окружения
+
+    application = Application.builder().token(TOKEN).build()
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CallbackQueryHandler(button_click))
