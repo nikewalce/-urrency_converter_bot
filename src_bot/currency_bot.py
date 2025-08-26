@@ -37,9 +37,9 @@ class CurrencyBot:
         ]
         return InlineKeyboardMarkup(buttons)
 
-    async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
+    async def start(self, update: Update):
         await update.message.reply_text(
-            "💰 Конвертер валют для Лизочки❤️\nВыбери направление конвертации:",
+            "💰 Конвертер валют \nВыбери направление конвертации:",
             reply_markup=self.get_keyboard()
         )
 
@@ -60,7 +60,7 @@ class CurrencyBot:
         await query.edit_message_text(
             f"Конвертация: {from_cur} → {to_cur}\n"
             f"Текущий курс: 1 {from_cur} = {rate:.4f} {to_cur}\n"
-            "Лизочка, введи сумму для конвертации:"
+            "Введи сумму для конвертации:"
         )
 
     async def on_amount_entered(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
