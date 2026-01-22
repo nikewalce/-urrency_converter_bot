@@ -37,7 +37,7 @@ class CurrencyBot:
         ]
         return InlineKeyboardMarkup(buttons)
 
-    async def start(self, update: Update):
+    async def start(self, update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(
             "💰 Конвертер валют \nВыбери направление конвертации:",
             reply_markup=self.get_keyboard()
@@ -80,7 +80,7 @@ class CurrencyBot:
             await update.message.reply_text(
                 f"🔹 {amount:.2f} {from_cur} = {result:.2f} {to_cur}\n"
                 f"Курс: 1 {from_cur} = {rate:.4f} {to_cur}\n\n"
-                "Для новой конвертации нажми /start"
+                "Для новой конвертации введите сумму или нажми /start для выбора новой валюты"
             )
         except ValueError:
             await update.message.reply_text("Ошибка: введи корректное число. Например: 100 или 50.5")
